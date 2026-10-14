@@ -1,0 +1,1 @@
+{"v": 1, "query": "[out:json][timeout:90][date:\"2026-07-27T00:00:00Z\"];(way[\"bridge\"][\"bridge\"!=\"no\"](28.100000,85.500000,28.200000,85.600000););out geom;", "fetched_utc": "2026-10-14T13:53:29+00:00", "n_elements": 0, "elements": []}
