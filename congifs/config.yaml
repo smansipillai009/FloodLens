@@ -1,0 +1,112 @@
+# FloodLens Nepal — central configuration.
+# ALL tunable thresholds live here and are READ by the code (app/config.py).
+# Tune ONLY on training / non-EMSR927 events. Freeze with scripts/freeze_config.py
+# before opening EMSR927 (validation_only/).
+
+aoi:
+  max_area_km2: 1000          # hard limit enforced in orchestrator
+  min_area_km2: 1.0           # below this the AOI is almost certainly a drawing mistake (point/line/sliver)
+  live_target_km2: 200        # live-demo size; larger AOIs get a warning
+  default_crs: "EPSG:4326"
+  # metric CRS is chosen automatically per AOI (UTM zone from centroid)
+
+scene_selection:
+  before_window_days: 18
+  after_window_days: 18
+  max_pre_event_reference_scenes: 3     # same-track scenes combined by median
+  s2_max_cloud_pct_scene: 80
+  s2_max_cloud_pct_aoi: 50
+  stac_url: "https://stac.dataspace.copernicus.eu/v1"   # current CDSE STAC (the old catalogue.dataspace.../stac uses other collection ids)
+  s1_collection: "sentinel-1-grd"       # VERIFY on Day 1 via GET /collections
+  s2_collection: "sentinel-2-l2a"       # VERIFY on Day 1 via GET /collections
+  instrument_mode: "IW"
+  required_polarizations: ["VV", "VH"]
+
+sentinel1:
+  speckle_filter: "lee"                 # "lee" | "boxcar"
+  speckle_window: 5
+  resolution_m: 10
+  multilook_factor: 3                   # 10 m -> 30 m block mean after Lee: run ce8056d9 had +-2.4 dB (p05/p95) change NOISE at 10 m. 1 = off
+  max_pixels_per_side: 2500             # CDSE Process API limit; AOI auto-coarsened
+  incidence_angle_deg: 39.0             # IW mid-swath approximation (29-46 deg)
+  input_units: "linear_sigma0"          # units of supplied/fetched GeoTIFFs (linear power; gamma0 or sigma0 per back_coeff)
+  back_coeff: "GAMMA0_TERRAIN"          # Process API: GAMMA0_TERRAIN = radiometric terrain flattening. VERIFY on Day 1
+
+sentinel2:
+  cloud_dilation_pixels: 3
+  mndwi_water_threshold: 0.0
+  ndvi_drop_threshold: 0.25
+  min_clear_fraction_for_confirmation: 0.2
+
+dem:
+  collection: "cop-dem-glo-30"
+  resolution_m: 30
+  max_slope_deg: 30.0                   # was 20: excluded steep gorge floors
+  hand_max_m_water: 15.0
+  hand_max_m_debris: 40.0               # debris flows run higher than ponded water
+  # When pysheds is NOT installed, 'HAND' is only local relief inside a ~510 m window, which is large on any slope; the true-HAND limits above
+  # then reject nearly everything (run 75683f5b: 493 water and 3110 debris candidates -> 0 and 14). The proxy gets its own, looser limits (UNVALIDATED:
+  # judge them with preview_run.py and detection_funnel.json; install pysheds to use real HAND and the limits above).
+  hand_proxy_filter: false             # run ce8056d9: relief proxy at the candidates had p50 = 640 m, so NO limit separates signal from terrain. Off until real HAND (pysheds)
+  hand_proxy_max_m_water: 60.0
+  hand_proxy_max_m_debris: 150.0
+
+flood_detection:
+  # dB. Water needs BOTH a drop and a low absolute post-event backscatter.
+  water_change_db_vv: -3.0
+  water_post_max_db_vv: -15.0
+  debris_change_db_vh: 3.0
+  permanent_water_pre_max_db_vv: -18.0  # pre-event dark => permanent water, excluded
+  min_area_m2: 20000                    # was 2500 (= 3 px at 30 m): run ccb787c2 left thousands of 3-10 px specks
+  use_layover_shadow_mask: true
+  # Regional trend removal: the change maps (run e1a1ac76) carry smooth km-scale red/blue banding (soil moisture, gain, rain between the two dates)
+  # that has nothing to do with flooding. A robust (clipped) Gaussian-weighted mean of the change is subtracted before thresholding. 0 = off.
+  detrend_sigma_m: 1200
+  detrend_clip_db: 3.0
+  # Hysteresis: the thresholds above are SEEDS; pixels that pass the weaker 'grow' thresholds are kept only if connected (8-neighbours) to a seed.
+  # This repairs the fragmented corridors seen in the previews without admitting isolated noise.
+  hysteresis: true
+  water_grow_change_db_vv: -1.5
+  water_grow_post_max_db_vv: -12.0
+  debris_grow_change_db_vh: 1.5
+  # Adaptive thresholds (constant false-alarm rate): the scene's own robust noise sigma (1.4826 x MAD of the detrended change; the flood covers too little area to bias it)
+  # sets the seed/grow thresholds, never below the fixed values above. Run ccb787c2: sigma ~ 1.3 dB, so 3.0 dB seeds (2.3 sigma) let 2.2% of all debris pixels through and a
+  # 1.5 dB grow threshold (1.2 sigma) tripled them by hysteresis. Judges' areas will have different noise levels.
+  adaptive_thresholds: true
+  adaptive_k_seed: 3.0
+  adaptive_k_grow: 1.75
+
+ml:
+  checkpoint: "models/checkpoints/unet_resnet18.pt"
+  norm_stats: "models/checkpoints/norm_stats.json"
+  metrics_file: "models/checkpoints/metrics.json"
+  encoder: "resnet18"
+  tile_size: 256
+  tile_overlap: 32
+  prob_threshold: 0.5
+  ensemble_requires_validation: true
+
+osm:
+  motorable_highway_tags: [trunk, trunk_link, primary, primary_link, secondary,
+                           secondary_link, tertiary, tertiary_link, unclassified,
+                           residential, track]   # 'track' is often the only road in Nepal hills
+  ohsome_url: "https://api.ohsome.org/v1"
+  overpass_urls: ["https://overpass-api.de/api/interpreter"]   # attic-date fallback ONLY (app/services/osm_overpass.py); used when ohsome refuses geometry (403)
+  snapshot_days_before_event: 1
+  fallback_latest_date: "2026-07-27"   # used ONLY if ohsome /metadata is unreachable (value from the problem statement); a warning is added
+  access_context_margin_km: 20   # roads/towns/hospitals fetched this far beyond the AOI (edge-effect fix; run 75683f5b found 0 targets at 10 km)
+  building_overlap_threshold_pct: 10
+  min_road_overlap_m: 5
+
+accessibility:
+  settlement_snap_tolerance_m: 500
+  target_snap_tolerance_m: 1000
+  buffers_m: [0, 30, 60]
+  min_block_length_m: 5
+  target_place_types: [town, city]
+  target_health_types: [hospital, clinic]   # pharmacies are NOT hospitals
+
+report:
+  language: "en"
+  max_settlement_rows: 15
+  prototype_disclaimer: "Educational prototype — not operational emergency guidance. All results require field verification."
