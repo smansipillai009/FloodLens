@@ -5,6 +5,10 @@ Takes an AOI + flood date and answers: where did the flood/debris hit (Sentinel-
 + clear-pixel Sentinel-2 confirmation, optional U-Net), what is potentially affected (pre-event OSM buildings/roads/bridges),
 who is potentially cut off (motorable-road graph G0 vs G1, buffer sensitivity), and writes a template report from `summary.json`.
 
+<img width="1895" height="952" alt="Screenshot 2026-10-14 220216" src="https://github.com/user-attachments/assets/63873100-c449-4c2e-be39-c2ebb96010fb" />
+<img width="1872" height="857" alt="Screenshot 2026-10-14 220132" src="https://github.com/user-attachments/assets/5fba6874-df5d-477e-900f-ffd25c9dbf45" />
+
+
 ## Setup
 ```bash
 python -m venv .venv && source .venv/bin/activate
