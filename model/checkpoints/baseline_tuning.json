@@ -1,0 +1,66 @@
+{
+  "multilook": 3,
+  "grid_rows": 143,
+  "tuned": {
+    "water_change_db_vv": -6.0,
+    "water_post_max_db_vv": -22.0
+  },
+  "current_config": {
+    "water_change_db_vv": -3.0,
+    "water_post_max_db_vv": -15.0
+  },
+  "scores": {
+    "tuned": {
+      "train": {
+        "iou": 0.0,
+        "f1": 0.0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "flood_pixel_fraction": NaN,
+        "pixels": 0
+      },
+      "val": {
+        "iou": 0.0,
+        "f1": 0.0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "flood_pixel_fraction": NaN,
+        "pixels": 0
+      },
+      "test": {
+        "iou": 0.0,
+        "f1": 0.0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "flood_pixel_fraction": NaN,
+        "pixels": 0
+      }
+    },
+    "current config": {
+      "train": {
+        "iou": 0.0,
+        "f1": 0.0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "flood_pixel_fraction": NaN,
+        "pixels": 0
+      },
+      "val": {
+        "iou": 0.0,
+        "f1": 0.0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "flood_pixel_fraction": NaN,
+        "pixels": 0
+      },
+      "test": {
+        "iou": 0.0,
+        "f1": 0.0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "flood_pixel_fraction": NaN,
+        "pixels": 0
+      }
+    }
+  }
+}

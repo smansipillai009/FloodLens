@@ -1,0 +1,20 @@
+{
+  "val": {
+    "iou": 0.7294563343298692,
+    "f1": 0.8435672180327344,
+    "precision": 0.9054771792379662,
+    "recall": 0.7895813714579232,
+    "area_diff_pct": -12.799417858060098,
+    "inference_s_per_patch": 0.010646803625698748
+  },
+  "test_heldout_events": {
+    "iou": 0.6174143215282893,
+    "f1": 0.7634584575025855,
+    "precision": 0.6700937361509464,
+    "recall": 0.8870521805842748,
+    "area_diff_pct": 32.377327637704695,
+    "inference_s_per_patch": 0.012542027797489096
+  },
+  "ensemble_validated": false,
+  "note": "Himalayan unseen-scene metrics are added by the separate check-only comparison script"
+}
