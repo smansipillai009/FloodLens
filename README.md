@@ -21,6 +21,7 @@ Files larger than 25MB have a google drive link atteched for reference
 \data\processed\kurosiwo.zip
 \models\checkpoints\unet_resnet18.pt
 \kurosiwo_patches.zip
+\outputs\runs\4849e43e
 
 ```
 ## Run
