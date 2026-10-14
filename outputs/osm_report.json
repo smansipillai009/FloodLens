@@ -1,0 +1,25 @@
+{
+  "snapshot": "2026-07-27",
+  "counts": {
+    "buildings": 519,
+    "roads": 0,
+    "bridges": 0,
+    "settlements": 0,
+    "towns": 0,
+    "health_facilities": 0
+  },
+  "failed": [
+    "roads",
+    "bridges",
+    "settlements",
+    "towns",
+    "health_facilities"
+  ],
+  "reasons": {
+    "roads": "tile 3/16: HTTP 504",
+    "bridges": "tile 2/2: HTTP 504",
+    "settlements": "tile 1/2: HTTP 504",
+    "towns": "tile 12/16: HTTP 504",
+    "health_facilities": "tile 4/16: HTTP 504"
+  }
+}

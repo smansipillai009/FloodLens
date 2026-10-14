@@ -1,0 +1,234 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "bridge": "yes",
+        "description": "cement bridge 6m",
+        "ele": "3730",
+        "foot": "yes",
+        "highway": "path",
+        "layer": "1",
+        "@osmId": "way/83925822"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            85.5572299,
+            28.2100858
+          ],
+          [
+            85.5572429,
+            28.2102233
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "bridge": "yes",
+        "highway": "path",
+        "layer": "1",
+        "@osmId": "way/249485804"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            85.5615189,
+            28.2082389
+          ],
+          [
+            85.5614928,
+            28.2080336
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "bridge": "yes",
+        "highway": "path",
+        "layer": "1",
+        "@osmId": "way/277793953"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            85.5637791,
+            28.2142532
+          ],
+          [
+            85.5637004,
+            28.2143148
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "bridge": "yes",
+        "highway": "path",
+        "layer": "1",
+        "@osmId": "way/329205830"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            85.4992737,
+            28.3365751
+          ],
+          [
+            85.4994461,
+            28.3363915
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "bridge": "yes",
+        "highway": "path",
+        "layer": "1",
+        "@osmId": "way/329206735"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            85.5252392,
+            28.3278396
+          ],
+          [
+            85.5253334,
+            28.3279556
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "bridge": "yes",
+        "highway": "footway",
+        "layer": "1",
+        "@osmId": "way/341038140"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            85.4860706,
+            28.3355798
+          ],
+          [
+            85.4862581,
+            28.3358305
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "bridge": "yes",
+        "bridge:structure": "suspension",
+        "highway": "footway",
+        "layer": "1",
+        "@osmId": "way/341222379"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            85.5225869,
+            28.2136807
+          ],
+          [
+            85.5224258,
+            28.213141
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "bridge": "yes",
+        "highway": "path",
+        "layer": "1",
+        "@osmId": "way/342005532"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            85.5666088,
+            28.2209816
+          ],
+          [
+            85.5665564,
+            28.2210243
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "bridge": "yes",
+        "bridge:structure": "simple-suspension",
+        "highway": "path",
+        "layer": "1",
+        "@osmId": "way/342770413"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            85.5622933,
+            28.2129655
+          ],
+          [
+            85.5629715,
+            28.2127579
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "bridge": "yes",
+        "foot": "yes",
+        "highway": "path",
+        "layer": "1",
+        "sac_scale": "hiking",
+        "surface": "ground",
+        "trail_visibility": "good",
+        "@osmId": "way/1450730513"
+      },
+      "geometry": {
+        "type": "LineString",
+        "coordinates": [
+          [
+            85.5689071,
+            28.2298407
+          ],
+          [
+            85.5688306,
+            28.2298806
+          ]
+        ]
+      }
+    }
+  ]
+}

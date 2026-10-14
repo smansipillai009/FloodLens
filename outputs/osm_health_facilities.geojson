@@ -1,0 +1,62 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "amenity": "clinic",
+        "check_date": "2023-09-06",
+        "healthcare": "clinic",
+        "name:en": "Langtang health post 2022",
+        "@osmId": "node/9721808417"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          85.519128,
+          28.2155311
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "amenity": "hospital",
+        "healthcare": "hospital",
+        "landuse": "healthcare",
+        "@osmId": "way/1296336419"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              85.5189593,
+              28.2157834
+            ],
+            [
+              85.5189583,
+              28.2156993
+            ],
+            [
+              85.5189985,
+              28.2156989
+            ],
+            [
+              85.5191628,
+              28.2156974
+            ],
+            [
+              85.5191638,
+              28.2157815
+            ],
+            [
+              85.5189593,
+              28.2157834
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+}
