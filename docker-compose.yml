@@ -1,0 +1,8 @@
+# Optional extra (plan: Docker only after Day 13). The lean app is a single Streamlit process;
+# the old compose file started uvicorn app.api.main:app, which does not exist.
+services:
+  floodlens:
+    build: .
+    ports: ["8501:8501"]
+    env_file: [.env]
+    volumes: ["./data:/app/data", "./outputs:/app/outputs", "./models:/app/models"]

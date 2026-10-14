@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.venv/
+env/
+
+# Data & models (large files, never commit)
+data/raw/
+data/processed/
+models/checkpoints/
+outputs/runs/
+
+# Secrets
+.env
+*.key
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# data that must not be committed
+validation_only/*
+!validation_only/README.md
+!validation_only/compare_emsr927.py
+.pytest_cache/
