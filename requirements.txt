@@ -1,0 +1,28 @@
+# Pin exact versions after your first clean-environment run: `pip freeze > requirements.lock`
+# (the plan requires a pinned, tested environment). Ranges below are the tested-against minimums.
+rasterio>=1.4.0
+geopandas>=1.0.0
+shapely>=2.0.0
+pyproj>=3.7.0
+numpy>=2.0.0
+scipy>=1.14.0
+scikit-image>=0.24.0
+pandas>=2.2.0
+pillow>=11.0.0
+networkx>=3.4.0
+requests>=2.32.0
+pydantic>=2.9.0
+PyYAML>=6.0.0
+python-dotenv>=1.0.0
+Jinja2>=3.1.0
+streamlit>=1.40.0
+folium>=0.18.0
+streamlit-folium>=0.23.0
+pytest>=8.3.0
+# --- optional but recommended ---
+# pysheds>=0.4      # true HAND (otherwise a labelled local-relief proxy is used)
+# --- AI component (install on the training machine / for ai mode) ---
+# torch>=2.4.0
+# segmentation-models-pytorch>=0.3.4
+# --- stretch only (not used by the lean pipeline) ---
+# fastapi, uvicorn, celery
