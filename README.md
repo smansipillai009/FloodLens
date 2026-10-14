@@ -15,6 +15,13 @@ python -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt            # + torch & segmentation-models-pytorch for the AI part, pysheds for true HAND
 cp .env.example .env                       # fill CDSE_CLIENT_ID / CDSE_CLIENT_SECRET
 pytest -q                                  # compliance + unit tests must pass before every demo
+
+Files larger than 25MB have a google drive link atteched for reference
+\data\reference\dem.zip
+\data\processed\kurosiwo.zip
+\models\checkpoints\unet_resnet18.pt
+\kurosiwo_patches.zip
+
 ```
 ## Run
 ```bash
